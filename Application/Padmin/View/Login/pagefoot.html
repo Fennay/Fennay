@@ -1,0 +1,39 @@
+<script>
+	$('.login-form').on('submit',submit)
+
+	function submit(){
+		var url = "{:U('/Padmin/Login/login_handle')}";
+		var username = $('[name=username]').val();
+		var password = $('[name=password]').val();
+
+		//判断帐号密码是否为空
+		if(username == '' || password == ''){
+			$('.alert').show();
+			return false;
+		}
+
+		//登陆提交数据
+		$.ajax({
+			url:url,
+			type:'POST',
+			data:{username:username,password:password},
+			dataType:'json',
+			success:function(data){
+				if(data.status < 0){
+					$('.alert').show();
+					$('.alert span').html(data.msg);
+					return;
+				}else{
+					$('#msg-info').modal('show');
+					$('#msg-info .modal-title').html('成功提示');
+					$('#msg-info .modal-body').html(data.msg);
+					$('#colse').on('click',function(){
+						window.location.href="{:U('/Padmin/Index/index')}";
+					});
+				}
+			}
+		});
+		return false;
+	}
+
+</script>
