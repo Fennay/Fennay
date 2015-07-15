@@ -24,4 +24,7 @@ define('RUNTIME_PATH','./Runtime/');
 // 引入ThinkPHP入口文件
 require './ThinkPHP/ThinkPHP.php';
 define('web_url',11111);
+
+
+define('sss',sssss);
 // 亲^_^ 后面不需要任何代码了 就是如此简单
