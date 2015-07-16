@@ -1,52 +1,59 @@
 <ul class="page-sidebar-menu page-sidebar-menu-light" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-                <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
-                <li class="sidebar-toggler-wrapper">
-                    <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-                    <div class="sidebar-toggler">
-                    </div>
-                    <!-- END SIDEBAR TOGGLER BUTTON -->
-                </li>
-                <!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
-                <li class="sidebar-search-wrapper">
-                    <form class="sidebar-search " action="extra_search.html" method="POST">
-                        <a href="javascript:;" class="remove">
-                        <i class="icon-close"></i>
-                        </a>
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search...">
-                            <span class="input-group-btn">
-                            <a href="javascript:;" class="btn submit"><i class="icon-magnifier"></i></a>
-                            </span>
-                        </div>
-                    </form>
-                </li>
-
-                <li class="start active open">
-                    <a href="javascript:;">
-                    <i class="icon-home"></i>
-                    <span class="title">Dashboard</span>
-                    <span class="selected"></span>
-                    <span class="arrow open"></span>
-                    </a>
-                    <ul class="sub-menu">
-                        <li  class="active">
-                            <a href="index.html">
-                            <i class="icon-bar-chart"></i>
-                            Default Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="index_2.html">
-                            <i class="icon-bulb"></i>
-                            New Dashboard #1</a>
-                        </li>
-                        <li>
-                            <a href="index_3.html">
-                            <i class="icon-graph"></i>
-                            New Dashboard #2</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="heading">
-                    <h3 class="uppercase">Features</h3>s
-                </li>
-            </ul>
+    <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
+    <li class="sidebar-toggler-wrapper">
+        <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+        <div class="sidebar-toggler">
+        </div>
+        <!-- END SIDEBAR TOGGLER BUTTON -->
+    </li>
+    <!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
+    <li class="sidebar-search-wrapper">
+        <form class="sidebar-search " action="extra_search.html" method="POST">
+            <a href="javascript:;" class="remove">
+            <i class="icon-close"></i>
+            </a>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search...">
+                <span class="input-group-btn">
+                <a href="javascript:;" class="btn submit"><i class="icon-magnifier"></i></a>
+                </span>
+            </div>
+        </form>
+    </li>
+    <li <if condition="CONTROLLER_NAME eq 'Index'"> class="start active"</if>>
+        <a href="javascript:;">
+        <i class="icon-home"></i>
+        <span class="title">首页</span>
+        </a>
+    </li>
+    <li>
+        <a href="javascript:;">
+        <i class="icon-settings"></i>
+        <span class="title">网站设置</span>
+        </a>
+    </li>
+    <li <if condition="CONTROLLER_NAME eq 'Article'"> class="active"</if>>
+        <a href="{:U('/Padmin/Article/index')}">
+        <i class="icon-pencil"></i>
+        <span class="title">文章管理</span>
+        </a>
+    </li>
+    <li>
+        <a href="javascript:;">
+        <i class="icon-note"></i>
+        <span class="title">留言管理</span>
+        </a>
+    </li>
+    <li>
+        <a href="javascript:;">
+        <i class="icon-note"></i>
+        <span class="title">留言管理</span>
+        </a>
+    </li>
+    <li>
+        <a href="javascript:;">
+        <i class="icon-logout"></i>
+        <span class="title">退出登陆</span>
+        </a>
+    </li>
+</ul>

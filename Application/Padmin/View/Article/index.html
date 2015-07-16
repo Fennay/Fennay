@@ -1,0 +1,233 @@
+<h3 class="page-title">
+文章管理 <small>input spinner, switches, input masks and more</small>
+</h3>
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="index.html">首页</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <a href="#">文章</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <a href="#">文章列表</a>
+        </li>
+    </ul>
+</div>
+<!-- 搜索 -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-equalizer font-red-sunglo"></i>
+                    <span class="caption-subject font-red-sunglo bold uppercase">搜索</span>
+                    <span class="caption-helper">搜索...</span>
+                </div>
+                <div class="tools">
+                    <a href="" class="expand">
+                    </a>
+                    <a href="" class="reload">
+                    </a>
+                    <a href="" class="remove">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body form" style="display:none;">
+                <!-- BEGIN FORM-->
+                <form action="" class="form-horizontal" method="get">
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">产品名称</label>
+                                    <div class="col-md-9">
+                                        <input type="text" name='title' value="{$title}" class="form-control input-large">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">天数</label>
+                                    <div class="col-md-9">
+                                        <input type="text" name="days" value="{$days}" class="form-control input-small inline"> 天
+                                        <input type="text" name="night" value="{$night}" class="form-control input-small inline"> 晚
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">产品编号</label>
+                                    <div class="col-md-9">
+                                        <input type="text" name="procode" value="{$procode}" class="form-control input-large">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">价格</label>
+                                    <div class="col-md-9">
+                                        <input type="text" name="from_price" value="{$from_price}" class="form-control input-small inline"> 到
+                                        <input type="text" name="to_price" value="{$to_price}" class="form-control input-small inline">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">发团日期</label>
+                                    <div class="col-md-9 input-group input-large date-picker input-daterange" data-date="2015-2-27" data-date-format="yyyy-mm-dd">
+                                        <input type="text" class="form-control" name="from_godate" value="{$from_godate}" >
+                                        <span class="input-group-addon">
+                                        到 </span>
+                                        <input type="text" class="form-control" name="to_godate" value="{$to_godate}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button type="submit" class="btn green">搜索</button>
+                                        <a href="{:U('/Ppro/Leave/index')}" class="btn default">重置</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- END FORM-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 内容 -->
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN SAMPLE TABLE PORTLET-->
+        <div class="portlet box blue">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-bell-o"></i>文章列表
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse">
+                    </a>
+                    <a href="#portlet-config" data-toggle="modal" class="config">
+                    </a>
+                    <a href="javascript:;" class="reload">
+                    </a>
+                    <a href="javascript:;" class="remove">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div>
+                    <a href="" class="btn purple">
+                    分类管理
+                    </a>
+                    <a href="{:U('/Padmin/Article/add')}" class="btn purple">
+                    添加文章 <i class="fa fa-plus"></i>
+                    </a>
+                </div>
+                <div class="table-scrollable">
+                    <table class="table table-striped table-bordered table-advance table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <i class="fa fa-briefcase"></i> Company
+                                </th>
+                                <th class="hidden-xs">
+                                    <i class="fa fa-user"></i> Contact
+                                </th>
+                                <th>
+                                    <i class="fa fa-shopping-cart"></i> Total
+                                </th>
+                                <th>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="highlight">
+                                    <div class="success">
+                                    </div>
+                                    <a href="javascript:;">
+                                    RedBull </a>
+                                </td>
+                                <td class="hidden-xs">
+                                    Mike Nilson
+                                </td>
+                                <td>
+                                    2560.60$
+                                </td>
+                                <td>
+                                    <a href="javascript:;" class="btn default btn-xs purple">
+                                    <i class="fa fa-edit"></i> Edit </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="highlight">
+                                    <div class="info">
+                                    </div>
+                                    <a href="javascript:;">
+                                    Google </a>
+                                </td>
+                                <td class="hidden-xs">
+                                    Adam Larson
+                                </td>
+                                <td>
+                                    560.60$
+                                </td>
+                                <td>
+                                    <a href="javascript:;" class="btn default btn-xs black">
+                                    <i class="fa fa-trash-o"></i> Delete </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="highlight">
+                                    <div class="success">
+                                    </div>
+                                    <a href="javascript:;">
+                                    Apple </a>
+                                </td>
+                                <td class="hidden-xs">
+                                    Daniel Kim
+                                </td>
+                                <td>
+                                    3460.60$
+                                </td>
+                                <td>
+                                    <a href="javascript:;" class="btn default btn-xs purple">
+                                    <i class="fa fa-edit"></i> Edit </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="highlight">
+                                    <div class="warning">
+                                    </div>
+                                    <a href="javascript:;">
+                                    Microsoft </a>
+                                </td>
+                                <td class="hidden-xs">
+                                    Nick
+                                </td>
+                                <td>
+                                    2560.60$
+                                </td>
+                                <td>
+                                    <a href="javascript:;" class="btn default btn-xs blue">
+                                    <i class="fa fa-share"></i> Share </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- END SAMPLE TABLE PORTLET-->
+    </div>
+</div>
