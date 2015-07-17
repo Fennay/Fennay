@@ -43,14 +43,15 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- END THEME STYLES -->
 
         <!-- 引入私有样式 -->
-        <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
-<link href="/Public/assets/global/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css"/>
-<link href="/Public/assets/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css"/>
-<link href="/Public/assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
-<!-- END PAGE LEVEL PLUGIN STYLES -->
-<!-- BEGIN PAGE STYLES -->
-<link href="/Public/assets/admin/pages/css/tasks.css" rel="stylesheet" type="text/css"/>
-<!-- END PAGE STYLES -->
+        <!-- select2插件 -->
+<link rel="stylesheet" type="text/css" href="/Public/assets/global/plugins/select2/select2.css"/>
+
+<!-- 百度编辑器 -->
+<link href="/Public/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="/Public/umeditor/third-party/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/Public/umeditor/umeditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/Public/umeditor/umeditor.min.js"></script>
+<script type="text/javascript" src="/Public/umeditor/lang/zh-cn/zh-cn.js"></script>
         <link rel="shortcut icon" href="/favicon.png"/>
     </head>
     <!-- END HEAD -->
@@ -538,23 +539,174 @@ License: You must have a valid license purchased only from themeforest(the above
                    </div>
                    <!-- 内容替换区域 -->
             	   <h3 class="page-title">
-Form Widgets & Tools <small>input spinner, switches, input masks and more</small>
+文章管理 <small>input spinner, switches, input masks and more</small>
 </h3>
 <div class="page-bar">
     <ul class="page-breadcrumb">
         <li>
             <i class="fa fa-home"></i>
-            <a href="index.html">Home</a>
+            <a href="index.html">首页</a>
             <i class="fa fa-angle-right"></i>
         </li>
         <li>
-            <a href="#">UI Components</a>
+            <a href="#">文章</a>
             <i class="fa fa-angle-right"></i>
         </li>
         <li>
-            <a href="#">Form Widgets & Tools</a>
+            <a href="#">文章列表</a>
         </li>
     </ul>
+</div>
+<div class="row">
+    <div class="col-md-12 ">
+        <form action="" method="post">
+            <!-- SEO 优化信息-->
+            <div class="portlet box green">
+                <div class="portlet-title">
+                    <div class="caption ">
+                        <i class="icon-pin"></i>
+                        <span class="caption-subject bold uppercase"> SEO优化</span>
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <div class="form-body form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">SEO标题</label>
+                            <div class="col-md-4">
+                                <input type="text" name="seo[seo_title]" class="form-control input-circle" placeholder="请输入SEO标题...">
+                                <span class="help-block">请输入SEO标题... </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">SEO关键字</label>
+                            <div class="col-md-4">
+                                <input type="text" name="seo[seo_keyword]" class="form-control input-circle" placeholder="请输入SEO关键字...">
+                                <span class="help-block">请输入SEO关键字... </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">SEO描述</label>
+                            <div class="col-md-4">
+                                <textarea class="form-control" name="seo[seo_desc]" cols="5" rows="5"></textarea>
+                                <span class="help-block">请输入SEO描述... </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="submit" class="btn btn-circle blue">保存</button>
+                                <button type="button" class="btn btn-circle default">取消</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 文章基本信息 -->
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption font-green">
+                        <i class="icon-pin font-green"></i>
+                        <span class="caption-subject bold uppercase"> 添加文章</span>
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <div class="form-body form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">标题</label>
+                            <div class="col-md-4">
+                                <input type="text" name="article[title]" class="form-control input-circle" placeholder="请输入标题...">
+                                <span class="help-block">
+                                请输入标题... </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">分类</label>
+                            <div class="col-md-4">
+                                <select name="article[cate][]" class="form-control select2 select2-offscreen" data-placeholder="请选择分类..." multiple>
+                                    <option value=""></option>
+                                    <option value="1">Linux</option>
+                                    <option value="2">PHP</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">标签</label>
+                            <div class="col-md-4">
+                                <select name="article[tag][]" class="form-control select2 select2-offscreen" data-placeholder="请选择标签..." multiple>
+                                    <option value=""></option>
+                                    <option value="1">Linux</option>
+                                    <option value="2">PHP</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">作者</label>
+                            <div class="col-md-4">
+                                <div class="input-icon">
+                                    <i class="fa fa-user"></i>
+                                    <input type="text" name="article[author]" class="form-control input-circle-left" placeholder="作者">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">阅读数量</label>
+                            <div class="col-md-4">
+                                <div class="input-icon">
+                                    <i class="fa fa-bell-o"></i>
+                                    <input type="text" name="article[click_num]" value="0" class="form-control input-circle" placeholder="Left icon">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">排序</label>
+                            <div class="col-md-4">
+                                <div class="input-icon">
+                                    <i class="fa fa-bell-o"></i>
+                                    <input type="text" name="article[sort]" value="0" class="form-control input-circle" placeholder="Left icon">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="submit" class="btn btn-circle blue">保存</button>
+                                <button type="button" class="btn btn-circle default">取消</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 文章内容信息 -->
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption font-green">
+                        <i class="icon-pin font-green"></i>
+                        <span class="caption-subject bold uppercase"> 文章内容</span>
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <div class="form-body form-horizontal">
+                        <div class="form-group ">
+                            <label class="col-md-2 control-label"></label>
+                            <div class="col-md-4">
+                                <script type="text/plain" id="myEditor" name="content" style="width:1000px;height:460px;"></script>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="submit" class="btn btn-circle blue">保存</button>
+                                <button type="button" class="btn btn-circle default">取消</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 
                 </div>
@@ -616,23 +768,14 @@ Form Widgets & Tools <small>input spinner, switches, input masks and more</small
         </script>
 
         <!-- 引入当前页面的就是文件 -->
-        <script src="/Public/assets/global/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
-<script src="/Public/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
-<script src="/Public/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
-<script src="/Public/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
-<script src="/Public/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
-<script src="/Public/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
-<script src="/Public/assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
-<script src="/Public/assets/global/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
-<script src="/Public/assets/global/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
-<script src="/Public/assets/global/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
-<script src="/Public/assets/global/plugins/jquery.pulsate.min.js" type="text/javascript"></script>
-<script src="/Public/assets/global/plugins/bootstrap-daterangepicker/moment.min.js" type="text/javascript"></script>
-<script src="/Public/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.js" type="text/javascript"></script>
-<!-- IMPORTANT! fullcalendar depends on jquery-ui.min.js for drag & drop support -->
-<script src="/Public/assets/global/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
-<script src="/Public/assets/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js" type="text/javascript"></script>
-<script src="/Public/assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+        <!-- select2插件 -->
+<script type="text/javascript" src="/Public/assets/global/plugins/select2/select2.min.js"></script>
+<script>
+	$('.select2').select2();
+
+	//实例化编辑器
+    var um = UM.getEditor('myEditor');
+</script>
         <!-- END JAVASCRIPTS -->
     </body>
     <!-- END BODY -->

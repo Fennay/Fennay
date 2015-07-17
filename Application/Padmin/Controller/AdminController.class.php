@@ -5,11 +5,14 @@
 * 后台公用控制器
 **********************/
 namespace Padmin\Controller;
-use Think\Controller;
+use Common\Controller\BaseController;
 
-class AdminController extends Controller {
+class AdminController extends BaseController {
 	public function __construct(){
 		parent::__construct();
+        //导入自己的类库
+        import('Common.Common.Core');
+
         //获取管理员信息
         $this->admin_user = $admin_user = session('p_admin_user');
         //定义常用信息为常量

@@ -10,10 +10,85 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2015-07-15 17:36:45
+Date: 2015-07-17 17:10:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for fny_article
+-- ----------------------------
+DROP TABLE IF EXISTS `fny_article`;
+CREATE TABLE `fny_article` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) DEFAULT NULL COMMENT '文章标题',
+  `author` varchar(20) DEFAULT NULL COMMENT '作者',
+  `click_num` smallint(1) DEFAULT NULL COMMENT '阅读数量',
+  `sort` tinyint(4) NOT NULL DEFAULT '0' COMMENT '排序',
+  `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态',
+  `addtime` int(11) DEFAULT NULL COMMENT '添加时间',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='文章基础表';
+
+-- ----------------------------
+-- Records of fny_article
+-- ----------------------------
+INSERT INTO `fny_article` VALUES ('2', '爱疯啊', '似懂非懂', '10', '10', '1', null);
+
+-- ----------------------------
+-- Table structure for fny_article_cate
+-- ----------------------------
+DROP TABLE IF EXISTS `fny_article_cate`;
+CREATE TABLE `fny_article_cate` (
+  `aid` int(11) NOT NULL COMMENT '文章ID',
+  `cid` int(11) DEFAULT NULL COMMENT '分类ID'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章分类中间表';
+
+-- ----------------------------
+-- Records of fny_article_cate
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for fny_article_content
+-- ----------------------------
+DROP TABLE IF EXISTS `fny_article_content`;
+CREATE TABLE `fny_article_content` (
+  `aid` int(11) NOT NULL,
+  `content` text COMMENT '文章内容'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章内容表';
+
+-- ----------------------------
+-- Records of fny_article_content
+-- ----------------------------
+INSERT INTO `fny_article_content` VALUES ('1', null);
+
+-- ----------------------------
+-- Table structure for fny_article_seo
+-- ----------------------------
+DROP TABLE IF EXISTS `fny_article_seo`;
+CREATE TABLE `fny_article_seo` (
+  `aid` int(11) NOT NULL COMMENT '文章ID',
+  `seo_title` varchar(50) DEFAULT NULL COMMENT 'SEO标题',
+  `seo_keyword` varchar(50) DEFAULT NULL COMMENT 'SEO关键字',
+  `seo_desc` varchar(255) DEFAULT NULL COMMENT 'SEO描述'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章SEO表';
+
+-- ----------------------------
+-- Records of fny_article_seo
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for fny_article_tag
+-- ----------------------------
+DROP TABLE IF EXISTS `fny_article_tag`;
+CREATE TABLE `fny_article_tag` (
+  `aid` int(11) NOT NULL COMMENT '文章ID',
+  `tid` int(11) NOT NULL COMMENT '标签ID'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章标签中间表';
+
+-- ----------------------------
+-- Records of fny_article_tag
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for fny_auth_group
@@ -28,7 +103,7 @@ CREATE TABLE `fny_auth_group` (
   `pid` tinyint(4) NOT NULL DEFAULT '0' COMMENT '父级pid',
   `level` tinyint(4) NOT NULL DEFAULT '1' COMMENT '级别',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='权限组';
 
 -- ----------------------------
 -- Records of fny_auth_group
@@ -49,7 +124,7 @@ CREATE TABLE `fny_auth_group_access` (
   UNIQUE KEY `uid_group_id` (`uid`,`group_id`),
   KEY `uid` (`uid`),
   KEY `group_id` (`group_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='组权限中间表';
 
 -- ----------------------------
 -- Records of fny_auth_group_access
@@ -74,7 +149,7 @@ CREATE TABLE `fny_auth_rule` (
   `level` int(5) NOT NULL DEFAULT '1' COMMENT '级别',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='权限规则表';
 
 -- ----------------------------
 -- Records of fny_auth_rule
@@ -100,6 +175,26 @@ INSERT INTO `fny_auth_rule` VALUES ('18', '/Pres/Scenic/add', '添加景点', '1
 INSERT INTO `fny_auth_rule` VALUES ('19', '/Pres/Scenic/edit', '编辑景点', '1', '1', '', '17', '3');
 
 -- ----------------------------
+-- Table structure for fny_cate
+-- ----------------------------
+DROP TABLE IF EXISTS `fny_cate`;
+CREATE TABLE `fny_cate` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) DEFAULT NULL COMMENT '名称',
+  `sort` tinyint(4) NOT NULL DEFAULT '0' COMMENT '排序',
+  `status` tinyint(255) NOT NULL DEFAULT '1' COMMENT '状态，0表示关闭，1表示开启',
+  `desc` text COMMENT '描述',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='分类表';
+
+-- ----------------------------
+-- Records of fny_cate
+-- ----------------------------
+INSERT INTO `fny_cate` VALUES ('1', '人生', '0', '1', 'Linux');
+INSERT INTO `fny_cate` VALUES ('2', '百味', '0', '1', '百味');
+INSERT INTO `fny_cate` VALUES ('3', '关于', '0', '1', '关于');
+
+-- ----------------------------
 -- Table structure for fny_log
 -- ----------------------------
 DROP TABLE IF EXISTS `fny_log`;
@@ -111,7 +206,7 @@ CREATE TABLE `fny_log` (
   `type` varchar(255) DEFAULT NULL COMMENT '类型',
   `content` text COMMENT '内容',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='日志表';
 
 -- ----------------------------
 -- Records of fny_log
@@ -161,11 +256,30 @@ CREATE TABLE `fny_manager` (
 -- ----------------------------
 -- Records of fny_manager
 -- ----------------------------
-INSERT INTO `fny_manager` VALUES ('1', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '123456', '13886686831', '123456@qq.com', '超级管理员', '1', '0', '超级管理员', '1', '127.0.0.1', '1436942455', '86', '1');
+INSERT INTO `fny_manager` VALUES ('1', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '123456', '13886686831', '123456@qq.com', '超级管理员', '1', '0', '超级管理员', '1', '127.0.0.1', '1437114162', '90', '1');
 INSERT INTO `fny_manager` VALUES ('2', 'wuyue', 'e10adc3949ba59abbe56e057f20f883e', '3067518067', '18171083359', '3067518067@qq.com', '五月', '1', '0', '五月', '1', '127.0.0.1', '1434015438', '13', '2');
 INSERT INTO `fny_manager` VALUES ('3', 'shimei', 'e10adc3949ba59abbe56e057f20f883e', '2785117199', '18171085815', '2785117199@qq.com', '师妹', '1', '0', '', '1', null, null, '0', '3');
 INSERT INTO `fny_manager` VALUES ('4', 'tangtang', 'e10adc3949ba59abbe56e057f20f883e', '2631808932', '18171085709', '2631808932@qq.com', '糖糖', '1', '0', '', '2', '127.0.0.1', '1434015462', '4', '3');
 INSERT INTO `fny_manager` VALUES ('5', 'liuxu', 'e10adc3949ba59abbe56e057f20f883e', '2748920049', '2748920049', '2748920049', '柳絮', '1', '0', '', '1', '127.0.0.1', '1434013641', '2', '3');
+
+-- ----------------------------
+-- Table structure for fny_tag
+-- ----------------------------
+DROP TABLE IF EXISTS `fny_tag`;
+CREATE TABLE `fny_tag` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) DEFAULT NULL COMMENT '名称',
+  `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态，0表示关闭，1表示开启',
+  `sort` tinyint(4) NOT NULL DEFAULT '0' COMMENT '排序',
+  `desc` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='标签表';
+
+-- ----------------------------
+-- Records of fny_tag
+-- ----------------------------
+INSERT INTO `fny_tag` VALUES ('1', 'Linux', '1', '0', null);
+INSERT INTO `fny_tag` VALUES ('2', 'PHP', '1', '0', null);
 
 -- ----------------------------
 -- View structure for tb_v_bind_fan

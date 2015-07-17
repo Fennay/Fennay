@@ -43,14 +43,15 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- END THEME STYLES -->
 
         <!-- 引入私有样式 -->
-        <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
-<link href="/Public/assets/global/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css"/>
-<link href="/Public/assets/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css"/>
-<link href="/Public/assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
-<!-- END PAGE LEVEL PLUGIN STYLES -->
-<!-- BEGIN PAGE STYLES -->
-<link href="/Public/assets/admin/pages/css/tasks.css" rel="stylesheet" type="text/css"/>
-<!-- END PAGE STYLES -->
+        <!-- select2插件 -->
+<link rel="stylesheet" type="text/css" href="/Public/assets/global/plugins/select2/select2.css"/>
+
+<!-- 百度编辑器 -->
+<link href="/Public/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="/Public/umeditor/third-party/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/Public/umeditor/umeditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/Public/umeditor/umeditor.min.js"></script>
+<script type="text/javascript" src="/Public/umeditor/lang/zh-cn/zh-cn.js"></script>
         <link rel="shortcut icon" href="/favicon.png"/>
     </head>
     <!-- END HEAD -->
@@ -538,23 +539,237 @@ License: You must have a valid license purchased only from themeforest(the above
                    </div>
                    <!-- 内容替换区域 -->
             	   <h3 class="page-title">
-Form Widgets & Tools <small>input spinner, switches, input masks and more</small>
+文章管理 <small>input spinner, switches, input masks and more</small>
 </h3>
 <div class="page-bar">
     <ul class="page-breadcrumb">
         <li>
             <i class="fa fa-home"></i>
-            <a href="index.html">Home</a>
+            <a href="index.html">首页</a>
             <i class="fa fa-angle-right"></i>
         </li>
         <li>
-            <a href="#">UI Components</a>
+            <a href="#">文章</a>
             <i class="fa fa-angle-right"></i>
         </li>
         <li>
-            <a href="#">Form Widgets & Tools</a>
+            <a href="#">文章列表</a>
         </li>
     </ul>
+</div>
+<!-- 搜索 -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-equalizer font-red-sunglo"></i>
+                    <span class="caption-subject font-red-sunglo bold uppercase">搜索</span>
+                    <span class="caption-helper">搜索...</span>
+                </div>
+                <div class="tools">
+                    <a href="" class="expand">
+                    </a>
+                    <a href="" class="reload">
+                    </a>
+                    <a href="" class="remove">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body form" style="display:none;">
+                <!-- BEGIN FORM-->
+                <form action="" class="form-horizontal" method="get">
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">产品名称</label>
+                                    <div class="col-md-9">
+                                        <input type="text" name='title' value="<?php echo ($title); ?>" class="form-control input-large">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">天数</label>
+                                    <div class="col-md-9">
+                                        <input type="text" name="days" value="<?php echo ($days); ?>" class="form-control input-small inline"> 天
+                                        <input type="text" name="night" value="<?php echo ($night); ?>" class="form-control input-small inline"> 晚
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">产品编号</label>
+                                    <div class="col-md-9">
+                                        <input type="text" name="procode" value="<?php echo ($procode); ?>" class="form-control input-large">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">价格</label>
+                                    <div class="col-md-9">
+                                        <input type="text" name="from_price" value="<?php echo ($from_price); ?>" class="form-control input-small inline"> 到
+                                        <input type="text" name="to_price" value="<?php echo ($to_price); ?>" class="form-control input-small inline">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">发团日期</label>
+                                    <div class="col-md-9 input-group input-large date-picker input-daterange" data-date="2015-2-27" data-date-format="yyyy-mm-dd">
+                                        <input type="text" class="form-control" name="from_godate" value="<?php echo ($from_godate); ?>" >
+                                        <span class="input-group-addon">
+                                        到 </span>
+                                        <input type="text" class="form-control" name="to_godate" value="<?php echo ($to_godate); ?>">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button type="submit" class="btn green">搜索</button>
+                                        <a href="<?php echo U('/Ppro/Leave/index');?>" class="btn default">重置</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- END FORM-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 内容 -->
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN SAMPLE TABLE PORTLET-->
+        <div class="portlet box blue">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-bell-o"></i>文章列表
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse">
+                    </a>
+                    <a href="#portlet-config" data-toggle="modal" class="config">
+                    </a>
+                    <a href="javascript:;" class="reload">
+                    </a>
+                    <a href="javascript:;" class="remove">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div>
+                    <a href="" class="btn purple">
+                    分类管理
+                    </a>
+                    <a href="<?php echo U('/Padmin/Article/add');?>" class="btn purple">
+                    添加文章 <i class="fa fa-plus"></i>
+                    </a>
+                </div>
+                <div class="table-scrollable">
+                    <table class="table table-striped table-bordered table-advance table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <i class="fa fa-briefcase"></i> Company
+                                </th>
+                                <th class="hidden-xs">
+                                    <i class="fa fa-user"></i> Contact
+                                </th>
+                                <th>
+                                    <i class="fa fa-shopping-cart"></i> Total
+                                </th>
+                                <th>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="highlight">
+                                    <div class="success">
+                                    </div>
+                                    <a href="javascript:;">
+                                    RedBull </a>
+                                </td>
+                                <td class="hidden-xs">
+                                    Mike Nilson
+                                </td>
+                                <td>
+                                    2560.60$
+                                </td>
+                                <td>
+                                    <a href="javascript:;" class="btn default btn-xs purple">
+                                    <i class="fa fa-edit"></i> Edit </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="highlight">
+                                    <div class="info">
+                                    </div>
+                                    <a href="javascript:;">
+                                    Google </a>
+                                </td>
+                                <td class="hidden-xs">
+                                    Adam Larson
+                                </td>
+                                <td>
+                                    560.60$
+                                </td>
+                                <td>
+                                    <a href="javascript:;" class="btn default btn-xs black">
+                                    <i class="fa fa-trash-o"></i> Delete </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="highlight">
+                                    <div class="success">
+                                    </div>
+                                    <a href="javascript:;">
+                                    Apple </a>
+                                </td>
+                                <td class="hidden-xs">
+                                    Daniel Kim
+                                </td>
+                                <td>
+                                    3460.60$
+                                </td>
+                                <td>
+                                    <a href="javascript:;" class="btn default btn-xs purple">
+                                    <i class="fa fa-edit"></i> Edit </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="highlight">
+                                    <div class="warning">
+                                    </div>
+                                    <a href="javascript:;">
+                                    Microsoft </a>
+                                </td>
+                                <td class="hidden-xs">
+                                    Nick
+                                </td>
+                                <td>
+                                    2560.60$
+                                </td>
+                                <td>
+                                    <a href="javascript:;" class="btn default btn-xs blue">
+                                    <i class="fa fa-share"></i> Share </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- END SAMPLE TABLE PORTLET-->
+    </div>
 </div>
 
                 </div>
@@ -616,23 +831,14 @@ Form Widgets & Tools <small>input spinner, switches, input masks and more</small
         </script>
 
         <!-- 引入当前页面的就是文件 -->
-        <script src="/Public/assets/global/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
-<script src="/Public/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
-<script src="/Public/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
-<script src="/Public/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
-<script src="/Public/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
-<script src="/Public/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
-<script src="/Public/assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
-<script src="/Public/assets/global/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
-<script src="/Public/assets/global/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
-<script src="/Public/assets/global/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
-<script src="/Public/assets/global/plugins/jquery.pulsate.min.js" type="text/javascript"></script>
-<script src="/Public/assets/global/plugins/bootstrap-daterangepicker/moment.min.js" type="text/javascript"></script>
-<script src="/Public/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.js" type="text/javascript"></script>
-<!-- IMPORTANT! fullcalendar depends on jquery-ui.min.js for drag & drop support -->
-<script src="/Public/assets/global/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
-<script src="/Public/assets/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js" type="text/javascript"></script>
-<script src="/Public/assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+        <!-- select2插件 -->
+<script type="text/javascript" src="/Public/assets/global/plugins/select2/select2.min.js"></script>
+<script>
+	$('.select2').select2();
+
+	//实例化编辑器
+    var um = UM.getEditor('myEditor');
+</script>
         <!-- END JAVASCRIPTS -->
     </body>
     <!-- END BODY -->
