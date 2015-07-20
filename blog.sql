@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2015-07-17 17:10:16
+Date: 2015-07-20 17:50:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -22,6 +22,7 @@ DROP TABLE IF EXISTS `fny_article`;
 CREATE TABLE `fny_article` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) DEFAULT NULL COMMENT '文章标题',
+  `abstract` varchar(200) DEFAULT NULL COMMENT '摘要',
   `author` varchar(20) DEFAULT NULL COMMENT '作者',
   `click_num` smallint(1) DEFAULT NULL COMMENT '阅读数量',
   `sort` tinyint(4) NOT NULL DEFAULT '0' COMMENT '排序',
@@ -33,7 +34,8 @@ CREATE TABLE `fny_article` (
 -- ----------------------------
 -- Records of fny_article
 -- ----------------------------
-INSERT INTO `fny_article` VALUES ('2', '爱疯啊', '似懂非懂', '10', '10', '1', null);
+INSERT INTO `fny_article` VALUES ('1', 'Hello World', null, 'Fennay', '0', '0', '1', '1437384237');
+INSERT INTO `fny_article` VALUES ('2', '2222', '', 'admin', '0', '0', '1', '1437384498');
 
 -- ----------------------------
 -- Table structure for fny_article_cate
@@ -47,6 +49,7 @@ CREATE TABLE `fny_article_cate` (
 -- ----------------------------
 -- Records of fny_article_cate
 -- ----------------------------
+INSERT INTO `fny_article_cate` VALUES ('2', '1');
 
 -- ----------------------------
 -- Table structure for fny_article_content
@@ -60,7 +63,8 @@ CREATE TABLE `fny_article_content` (
 -- ----------------------------
 -- Records of fny_article_content
 -- ----------------------------
-INSERT INTO `fny_article_content` VALUES ('1', null);
+INSERT INTO `fny_article_content` VALUES ('1', '&lt;p&gt;Hello World&lt;/p&gt;');
+INSERT INTO `fny_article_content` VALUES ('2', '&lt;p&gt;2222&lt;/p&gt;');
 
 -- ----------------------------
 -- Table structure for fny_article_seo
@@ -76,6 +80,8 @@ CREATE TABLE `fny_article_seo` (
 -- ----------------------------
 -- Records of fny_article_seo
 -- ----------------------------
+INSERT INTO `fny_article_seo` VALUES ('1', 'Hello World', 'Hello World', 'Hello World');
+INSERT INTO `fny_article_seo` VALUES ('2', '', '', '');
 
 -- ----------------------------
 -- Table structure for fny_article_tag
@@ -89,6 +95,7 @@ CREATE TABLE `fny_article_tag` (
 -- ----------------------------
 -- Records of fny_article_tag
 -- ----------------------------
+INSERT INTO `fny_article_tag` VALUES ('2', '0');
 
 -- ----------------------------
 -- Table structure for fny_auth_group
@@ -256,7 +263,7 @@ CREATE TABLE `fny_manager` (
 -- ----------------------------
 -- Records of fny_manager
 -- ----------------------------
-INSERT INTO `fny_manager` VALUES ('1', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '123456', '13886686831', '123456@qq.com', '超级管理员', '1', '0', '超级管理员', '1', '127.0.0.1', '1437114162', '90', '1');
+INSERT INTO `fny_manager` VALUES ('1', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '123456', '13886686831', '123456@qq.com', '超级管理员', '1', '0', '超级管理员', '1', '127.0.0.1', '1437380926', '91', '1');
 INSERT INTO `fny_manager` VALUES ('2', 'wuyue', 'e10adc3949ba59abbe56e057f20f883e', '3067518067', '18171083359', '3067518067@qq.com', '五月', '1', '0', '五月', '1', '127.0.0.1', '1434015438', '13', '2');
 INSERT INTO `fny_manager` VALUES ('3', 'shimei', 'e10adc3949ba59abbe56e057f20f883e', '2785117199', '18171085815', '2785117199@qq.com', '师妹', '1', '0', '', '1', null, null, '0', '3');
 INSERT INTO `fny_manager` VALUES ('4', 'tangtang', 'e10adc3949ba59abbe56e057f20f883e', '2631808932', '18171085709', '2631808932@qq.com', '糖糖', '1', '0', '', '2', '127.0.0.1', '1434015462', '4', '3');
