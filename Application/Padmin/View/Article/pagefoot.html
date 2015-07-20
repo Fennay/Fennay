@@ -4,5 +4,30 @@
 	$('.select2').select2();
 
 	//实例化编辑器
-    var um = UM.getEditor('myEditor');
+    var ue = UE.getEditor('editor');
+
+
+    var form = $('#basic_form');
+    var url = form.attr('action');
+    //  保存基本信息
+    $('#basic').click(function (){
+        var data = form.serializeArray();
+        $.ajax({
+            url:url,
+            type:"POST",
+            data:data,
+            dataType:'JSON',
+            success:function(msg){
+                //弹出提示弹出层
+                $('#msg-info').modal('show');
+                if(msg.status == 1){
+                    $('#msg-info .modal-title').html('成功提示');
+                }else{
+                    $('#msg-info .modal-title').html('失败提示');
+                }
+                $('#msg-info .modal-body').html(msg.msg);
+                $('.pro_id').val(msg.pro_id);
+            }
+        });
+    });
 </script>
