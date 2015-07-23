@@ -1,5 +1,5 @@
 <?php
-$mysql_config = include '/Application/Common/Conf/mysql_config.php';
+$mysql_config = require './Application/Common/Conf/mysql_config.php';
 $data =  array(
     //'配置项'=>'配置值'
     //网站默认title
